@@ -1,0 +1,21 @@
+== README
+
+
+
+users
+* email
+* pass
+* credit
+* active
+* stripe_customer_token
+
+files
+* user_id
+* file
+* is_image
+
+usage_data
+* user_id
+
+charges
+* user_id
