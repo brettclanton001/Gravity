@@ -1,21 +1,44 @@
 == README
 
-
-
 users
 * email
 * pass
 * credit
+* discount_percent
 * active
+* max_charge
 * stripe_customer_token
+* service_subscribed
+* promotion_subscribed
 
 files
 * user_id
 * file
-* is_image
+* size
+* requests
+* attributes
 
-usage_data
+transfer_logs
 * user_id
+* month_year
+* usage
 
 charges
 * user_id
+* transfer_log_id
+* usage_cost
+* charged_amount
+* successful
+* attempts
+
+= Login
+Use devise to handle logging in.
+
+= Credit Cards
+All credit card information will be stored on stripe, only the customer hash will be stored locally.
+I may even have the payment options page ajax directly with stripe over https, so the information
+doesn't even pass through my system.
+
+= Storage
+Amazon s3 for storage.  The requests will pass through my system and be cached within my system
+to help with performance.
