@@ -18,7 +18,6 @@ describe "Users" do
                            }
       response.status.should be(200)
       assert_select ".alert", :text => "&times;A message with a confirmation link has been sent to your email address. Please open the link to activate your account."
-      assert_select ".header .login-info .current-user-email", :text => "testuser99@example.com"
     end
 
     it "should allow the user to log out" do
@@ -43,7 +42,6 @@ describe "Users" do
                                   }
       response.status.should be(200)
       assert_select ".alert", :text => "&times;You have to confirm your account before continuing."
-      assert_select ".header .login-info .current-user-email", :text => "testuser99@example.com"
     end
 
   end
