@@ -12,13 +12,13 @@ describe "Users" do
         assert_select "input[type=submit]"
       end
       post_via_redirect "/users", user: {
-                             email: "testuser2@example.com",
+                             email: "testuser99@example.com",
                              password: "secret123",
                              password_confirmation: "secret123"
                            }
       response.status.should be(200)
-      assert_select ".alert", :text => "&times;Welcome! You have signed up successfully."
-      assert_select ".header .login-info .current-user-email", :text => "testuser2@example.com"
+      assert_select ".alert", :text => "&times;A message with a confirmation link has been sent to your email address. Please open the link to activate your account."
+      assert_select ".header .login-info .current-user-email", :text => "testuser99@example.com"
     end
 
     it "should allow the user to log out" do
@@ -38,12 +38,12 @@ describe "Users" do
         assert_select "input[type=submit]"
       end
       post_via_redirect "/users/sign_in", user: {
-                                    email: "testuser@example.com",
+                                    email: "testuser99@example.com",
                                     password: "secret123"
                                   }
       response.status.should be(200)
-      assert_select ".alert", :text => "&times;Signed in successfully."
-      assert_select ".header .login-info .current-user-email", :text => "testuser@example.com"
+      assert_select ".alert", :text => "&times;You have to confirm your account before continuing."
+      assert_select ".header .login-info .current-user-email", :text => "testuser99@example.com"
     end
 
   end

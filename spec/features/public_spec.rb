@@ -12,16 +12,24 @@ describe "Public Paths" do
     end
 
     it "Should have a slogan" do
+      pending 'more homepage work'
       page.should have_text('you still own it')
       page.should have_text('and it\'s awesome')
     end
 
     it "Should have a place to drop your files" do
+      pending 'more homepage work'
       page.should have_text('drop files here')
     end
 
     it "Should have a prompt to learn more and scroll down" do
+      pending 'more homepage work'
       page.should have_text('learn more')
+    end
+
+    it "Should have a get started section" do
+      pending 'more homepage work'
+      page.should have_text('get started!')
     end
 
   end

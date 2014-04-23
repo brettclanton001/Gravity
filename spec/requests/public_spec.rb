@@ -12,9 +12,19 @@ describe "Public Paths" do
 
   describe "Terms" do
 
+    it "should support contact route" do
+      get_via_redirect '/conditions'
+      response.status.should be 200
+    end
+
   end
 
   describe "Support" do
+
+    it "should support contact route" do
+      get_via_redirect '/contact'
+      response.status.should be 200
+    end
 
   end
 

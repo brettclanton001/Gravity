@@ -1,7 +1,7 @@
 
 def create_logged_in_user
   post "/users", user: {
-    email: "testuser@example.com",
+    email: "testuser99@example.com",
     password: "secret123",
     password_confirmation: "secret123"
   }
