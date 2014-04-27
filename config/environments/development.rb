@@ -37,6 +37,6 @@ Gravity::Application.configure do
     :domain => "gmail.com",
     :authentication => :login,
     :user_name => "brettclanton001@gmail.com",
-    :password => GMAIL_PASSWORD
+    :password => ENV['GMAIL_PASSWORD']
   }
 end
