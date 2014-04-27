@@ -29,4 +29,8 @@ class User < ActiveRecord::Base
     stripe_customer_token.present?
   end
 
+  def payment_methods
+    stripe_customer.cards.all
+  end
+
 end
