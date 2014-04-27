@@ -23,4 +23,8 @@ Gravity::Application.routes.draw do
 
   devise_for :users
 
+  get "/account/payment_methods"
+  get "/account/payment_history"
+  get "/account/settings"
+
 end
