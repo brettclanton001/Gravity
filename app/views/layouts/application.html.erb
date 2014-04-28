@@ -16,23 +16,23 @@
 
     <!-- For third-generation iPad with high-resolution Retina display: -->
     <!-- Size should be 144 x 144 pixels -->
-    <%= favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144' %>
+    <%#= favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144' %>
 
     <!-- For iPhone with high-resolution Retina display: -->
     <!-- Size should be 114 x 114 pixels -->
-    <%= favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114' %>
+    <%#= favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114' %>
 
     <!-- For first- and second-generation iPad: -->
     <!-- Size should be 72 x 72 pixels -->
-    <%= favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72' %>
+    <%#= favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72' %>
 
     <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
     <!-- Size should be 57 x 57 pixels -->
-    <%= favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
+    <%#= favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
 
     <!-- For all other devices -->
     <!-- Size should be 32 x 32 pixels -->
-    <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
+    <%= favicon_link_tag '/assets/favicon.png', :rel => 'shortcut icon' %>
 
     <%= javascript_include_tag "application" %>
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
@@ -45,13 +45,26 @@
       <div class="row">
         <div class="logo span6"></div>
         <div class="login-info span6">
-          <% if current_user %>
-            <%= content_tag :span, current_user.email, class: 'current-user-email' %>
-            <%= link_to 'logout', '/users/sign_out', method: :delete %>
-          <% else %>
-            <%= link_to 'login', '/users/sign_in' %>
-            <%= link_to 'sign up', '/users/sign_up' %>
-          <% end %>
+          <ul class="nav nav-pills">
+            <% if current_user %>
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  <%= content_tag :span, current_user.email, class: 'current-user-email' %>
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <%= content_tag :li, link_to('Settings', account_settings_path) %>
+                  <%= content_tag :li, link_to('Payment Methods', account_payment_methods_path) %>
+                  <%= content_tag :li, link_to('Payment History', account_payment_history_path) %>
+                  <%= content_tag :li, link_to('Logout', destroy_user_session_path, method: :delete) %>
+                </ul>
+              </li>
+              <%= content_tag :li, link_to('Uploads', root_path) %>
+            <% else %>
+              <%= content_tag :li, link_to('Sign Up', new_user_registration_path) %>
+              <%= content_tag :li, link_to('Login', new_user_session_path) %>
+            <% end %>
+          </ul>
         </div>
       </div>
     </div>

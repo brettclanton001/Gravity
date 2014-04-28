@@ -5,4 +5,13 @@ body {
 
 .login-info {
   text-align: right;
+
+  .nav-pills {
+    li {
+      float: right;
+    }
+    .dropdown-menu li {
+      width: 100%;
+    }
+  }
 }
