@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
+  has_many :uploaded_files
   before_create :create_stripe_customer
   after_save :update_stripe_customer
 
@@ -31,6 +32,18 @@ class User < ActiveRecord::Base
 
   def payment_methods
     stripe_customer.cards.all
+  end
+
+  def payment_history
+    Stripe::Charge.all(customer: stripe_customer_token)
+  end
+
+  def new_charge amount
+    Stripe::Charge.create(
+      amount: amount,
+      currency: 'usd',
+      customer: stripe_customer_token
+    )
   end
 
 end

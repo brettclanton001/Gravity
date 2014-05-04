@@ -1,2 +1,30 @@
 <h1>Gravity</h1>
 <p>Find me in app/views/public/homepage.html.erb</p>
+
+<% if current_user %>
+  <%= form_for UploadedFile.new, :html => { :multipart => true, :class => 'form-horizontal' } do |f| %>
+    <div class="control-group">
+      <div class="controls">
+        <%= f.file_field :upload %>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+    </div>
+  <% end %>
+
+
+
+  <table id="payment-history-list" class="table table-striped">
+    <tr>
+      <th>URL</th>
+    </tr>
+    <% current_user.uploaded_files.each do |file| %>
+      <tr>
+        <td><%= link_to "#{request.original_url}i/#{file.token}", "#{request.original_url}i/#{file.token}", target: '_blank' %>
+      </tr>
+    <% end %>
+  </table>
+
+<% end %>

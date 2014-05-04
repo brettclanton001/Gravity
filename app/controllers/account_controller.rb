@@ -10,6 +10,11 @@ class AccountController < ApplicationController
   end
 
   def payment_history
+
+    respond_to do |format|
+      format.html
+      format.json { render json: current_user.payment_history}
+    end
   end
 
   def settings

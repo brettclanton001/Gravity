@@ -1,6 +1,6 @@
-<h1>Current Payment Methods</h1>
+<h1>Payment Methods</h1>
 <p>All of your current payment methods will be listed below.</p>
-<table id="credit-card-list" class="table table-striped">
+<table id="payment-method-list" class="table table-striped">
   <tr>
     <th>Credit Card Number</th>
     <th>Type</th>
@@ -14,19 +14,19 @@
 
 <h3>Create New Payment Method</h3>
 <%= form_tag do %>
-  <div id="add_payment_method_form">
+  <div id="add-payment-method-form">
     <div class="input-row">
       <label for="card-number">Card Number:</label>
       <input type="text" placeholder="1111222233334444" id="card-number" />
-    </div>
-    <div class="input-row">
-      <label for="card-cvc">CVC Number:</label>
-      <input type="text" placeholder="123" id="card-cvc" />
     </div>
     <div class="input-row expiration">
       <label>Expiration:</label>
       <input maxlength="2" type="text" placeholder="Month" id="card-expiry-month" />
       <input maxlength="4" type="text" placeholder="Year" id="card-expiry-year" />
+    </div>
+    <div class="input-row">
+      <label for="card-cvc">CVC Number:</label>
+      <input type="text" placeholder="123" id="card-cvc" />
     </div>
     <div class="input-row">
       <input type="submit" value="Create Payment Method" class="submit" />

@@ -1,2 +1,15 @@
-<h1>Account#payment_history</h1>
-<p>Find me in app/views/account/payment_history.html.erb</p>
+<h1>Payment History</h1>
+<p>Your most recent payments will be listed below.</p>
+<table id="payment-history-list" class="table table-striped">
+  <tr>
+    <th>Status</th>
+    <th>Amount</th>
+    <th>Card</th>
+    <th>Billing Date</th>
+  </tr>
+  <tr class="loading-payment-history">
+    <td colspan="4"><i class="icon-spinner icon-spin icon-large"></i></td>
+  </tr>
+</table>
+
+

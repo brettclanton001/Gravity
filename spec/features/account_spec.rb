@@ -18,8 +18,18 @@ describe "Account/Stripe functionality" do
     end
 
     it "should display current payment methods" do
-      page.should have_text 'Current Payment Methods'
+      page.should have_text 'Payment Methods'
+    end
+  end
+
+  describe "Payment History" do
+    before do
+      visit '/account/payment_history'
     end
 
+    it "should display payment history" do
+      page.should have_text 'Payment History'
+    end
   end
+
 end

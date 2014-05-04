@@ -30,4 +30,9 @@ Gravity::Application.routes.draw do
   get  "/api/user_payment_methods" => "account#payment_methods"
   get  "/api/user_payment_history" => "account#payment_history"
 
+
+  # Files
+  get "/i/:token" => "uploaded_file#show_file"
+  post "uploaded_files" => "uploaded_file#create"
+
 end

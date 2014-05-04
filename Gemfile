@@ -16,6 +16,9 @@ gem 'devise'
 gem 'twitter-bootstrap-rails'
 gem 'less-rails-bootstrap'
 gem 'stripe'
+gem 'carrierwave'
+gem 'rmagick'
+gem 'fog'
 
 group :doc do
   gem 'sdoc', require: false
