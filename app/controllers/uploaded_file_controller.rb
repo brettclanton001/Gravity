@@ -2,6 +2,7 @@ class UploadedFileController < ApplicationController
 
   def show_file
     file = UploadedFile.find_with_token(params[:token])
+    file.log_file_request
     send_file file.cached_file, type: file.type, disposition: "inline"
   end
 

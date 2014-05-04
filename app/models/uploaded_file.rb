@@ -3,10 +3,17 @@ class UploadedFile < ActiveRecord::Base
   IMAGE_EXTENSIONS = ['jpg', 'jpeg', 'gif', 'png']
 
   belongs_to :users
+  has_many :file_requests
 
   mount_uploader :upload, FileUploader
 
   validates_uniqueness_of :token
+
+  before_create :record_file_size
+
+  def record_file_size
+    self.file_size = upload.file.size
+  end
 
   def self.find_with_token token
     where(token: token).first
@@ -41,5 +48,29 @@ class UploadedFile < ActiveRecord::Base
     else
       ''
     end
+  end
+
+  def log_file_request
+    log = request_log
+    log.update_attribute(:requests, log.requests + 1)
+    log.requests
+  end
+
+  def request_log
+    today = Date.today
+    current_log = FileRequest.where([
+      " uploaded_file_id = ? AND start_date <= ? AND end_date >= ? ",
+      self.id,
+      today,
+      today
+    ]).first
+    if current_log.nil?
+      current_log = FileRequest.create(
+        uploaded_file_id: self.id,
+        start_date: today.at_beginning_of_month,
+        end_date: today.at_end_of_month
+      )
+    end
+    current_log
   end
 end

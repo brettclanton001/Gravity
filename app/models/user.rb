@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
          :confirmable
 
   has_many :uploaded_files
+  has_many :user_charges
+
   before_create :create_stripe_customer
   after_save :update_stripe_customer
 
@@ -44,6 +46,22 @@ class User < ActiveRecord::Base
       currency: 'usd',
       customer: stripe_customer_token
     )
+  end
+
+  def current_cost
+    c = CostCalculator.new
+    c.bytes = current_byte_usage
+    c.s3_cost
+  end
+
+  def current_byte_usage
+    file_ids = self.uploaded_files.pluck(:id)
+    unpaid_requests = FileRequest.where( uploaded_file_id: file_ids, user_charge_id: nil )
+    byte_usage = 0
+    unpaid_requests.each do |r|
+      byte_usage += r.requests * r.uploaded_file.file_size
+    end
+    byte_usage
   end
 
 end

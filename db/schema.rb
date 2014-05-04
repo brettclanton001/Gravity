@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140504161539) do
+ActiveRecord::Schema.define(version: 20140504221126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "file_requests", force: true do |t|
+    t.integer  "uploaded_file_id"
+    t.integer  "requests",         default: 0
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_charge_id"
+  end
+
+  add_index "file_requests", ["uploaded_file_id"], name: "file_request_by_uploaded_file_id", using: :btree
 
   create_table "uploaded_files", force: true do |t|
     t.integer  "user_id"
@@ -27,6 +39,18 @@ ActiveRecord::Schema.define(version: 20140504161539) do
 
   add_index "uploaded_files", ["token"], name: "uploaded_file_by_token", unique: true, using: :btree
   add_index "uploaded_files", ["user_id"], name: "uploaded_file_by_user_id", using: :btree
+
+  create_table "user_charges", force: true do |t|
+    t.integer  "user_id"
+    t.boolean  "success",      default: false
+    t.integer  "amount"
+    t.date     "period_start"
+    t.date     "period_end"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_charges", ["user_id"], name: "user_charges_by_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",   null: false
