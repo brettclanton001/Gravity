@@ -1,4 +1,4 @@
-class CreateUploadedFile < ActiveRecord::Migration
+class CreateUploadedFiles < ActiveRecord::Migration
   def change
     create_table :uploaded_files do |t|
       t.integer :user_id
