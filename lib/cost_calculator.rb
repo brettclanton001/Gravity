@@ -15,7 +15,7 @@ class CostCalculator
   end
 
   def charge # in cents
-    ( (s3_cost + (s3_cost * STRIPE_PERCENT) + 30) * CHARGE_TO_COST ).ceil
+    ( s3_cost * CHARGE_TO_COST * (1 + STRIPE_PERCENT) + 30 ).ceil
   end
 
   def final_charge # in cents
