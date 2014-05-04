@@ -5,15 +5,16 @@ gem 'rails', '4.0.4'
 
 gem 'pg'
 gem 'sass-rails', '~> 4.0.2'
-gem 'less-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 gem 'turbolinks'
+gem 'jquery-turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'devise'
 gem 'twitter-bootstrap-rails'
+gem 'less-rails-bootstrap'
 gem 'stripe'
 
 group :doc do

@@ -3,15 +3,14 @@
 <table id="credit-card-list" class="table table-striped">
   <tr>
     <th>Credit Card Number</th>
+    <th>Type</th>
     <th>Expiration</th>
   </tr>
-  <% current_user.payment_methods.each do |payment_method| %>
-    <tr>
-      <td>************<%= payment_method[:last4] %></td>
-      <td><%= "#{payment_method[:exp_month]}/#{payment_method[:exp_year]}" %></td>
-    </tr>
-  <% end %>
+  <tr class="loading-payment-methods">
+    <td colspan="3"><i class="icon-spinner icon-spin icon-large"></i></td>
+  </tr>
 </table>
+
 
 <h3>Create New Payment Method</h3>
 <%= form_tag do %>
