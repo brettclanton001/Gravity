@@ -80,23 +80,6 @@ a {
 
 
 // Bootstrap Overrides
-.nav > li > a:hover, .nav > li > a:focus {
-  background-color: #555;
-}
-.nav .dropdown-toggle .caret {
-  border-top-color: #FFF;
-  border-bottom-color: #FFF;
-}
-.nav .dropdown-toggle:hover .caret, .nav .dropdown-toggle:focus .caret {
-  border-top-color: #FFF;
-  border-bottom-color: #FFF;
-}
-.hero .header .dropdown-menu > li > a {
-  color: #333;
-}
-.hero .header .dropdown-menu > li:hover > a {
-  color: #FFF;
-}
 .nav {
   margin: 0;
 }

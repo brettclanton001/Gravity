@@ -1,0 +1,42 @@
+#upload-page-dropzone {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  cursor: pointer;
+
+  .dz-preview, .dz-message {
+    display: none;
+  }
+
+  // Spiral Background
+
+
+  * { position: absolute; }
+
+  circles {
+    z-index: -1;
+    width: 0;
+    height: 0;
+    top: 40%;
+    left: 50%;
+    -webkit-animation: upload_spin 50s infinite linear;
+    animation: upload_spin 50s infinite linear;
+
+    circle {
+      border-radius: 50%/50%;
+      border: 2px solid #2da9d6;
+      -webkit-transition: 0.4s 0s ease-in-out;
+      transition: 0.4s 0s ease-in-out;
+    }
+  }
+}
+@-webkit-keyframes upload_spin {
+  0%   { -webkit-transform: rotateZ(0deg);   }
+  100% { -webkit-transform: rotateZ(360deg); }
+}
+
+@keyframes upload_spin {
+  0%   { transform: rotate(0deg);   }
+  100% { transform: rotate(360deg); }
+}
+

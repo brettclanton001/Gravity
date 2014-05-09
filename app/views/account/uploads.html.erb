@@ -1,2 +1,28 @@
 
-<p>Uploads</p>
+
+<div class="row">
+  <div class="span6">
+    <h4>Upload More Files</h4>
+    <form action="/uploaded_files" class="dropzone" id="upload-page-dropzone" method="post">
+      <circles></circles>
+    </form>
+  </div>
+
+  <div class="span6">
+    <h4>Your Uploads</h4>
+    <table id="uploads-page-file-list" class="table-striped table">
+      <tr>
+        <th>Where?</th>
+        <th>When?</th>
+      </tr>
+      <tbody class="data">
+        <% current_user.uploaded_files.last(20).each do |file| %>
+          <tr>
+            <td><%= link_to short_url(file), short_url(file), target: '_blank' %></td>
+            <td><%= time_ago file %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

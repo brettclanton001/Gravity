@@ -24,7 +24,6 @@ $ ->
         paddingTop: ''
 
   body_position = ->
-    console.log "#{$(document).height()}/#{window_height}"
     if $(document).height() > window_height
       $('body').css
         position: 'relative'
