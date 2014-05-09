@@ -1,4 +1,8 @@
 
+.is-homepage .content.container {
+  padding: 0;
+}
+
 .is-homepage .hero {
   background: #1f9bc9;
   height: 600px;
@@ -21,6 +25,15 @@
   form {
     display: none;
   }
+
+  .logo {
+    padding-top: 20px;
+  }
+
+  .nav {
+    margin: 20px 0 0;
+  }
+
 }
 
 .homepage-section {
@@ -30,6 +43,7 @@
   .section-header {
     text-align: center;
     font-size: 32px;
+    line-height: 40px;
     padding: 60px 0 40px;
   }
 
@@ -53,6 +67,13 @@
     margin: 0 auto;
   }
 }
+
+
+.is-homepage .footer {
+  padding: 40px 0 20px;
+}
+
+
 
 // Homepage Header
 

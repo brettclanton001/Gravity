@@ -33,6 +33,10 @@ Gravity::Application.routes.draw do
 
   # Files
   get "/i/:token" => "uploaded_file#show_file"
-  post "uploaded_files" => "uploaded_file#create"
+  post "/uploaded_files" => "uploaded_file#create"
+
+
+  # Main App Page
+  get '/uploads' => "account#uploads"
 
 end

@@ -1,12 +1,13 @@
 $ ->
 
+  # Variables
   is_homepage = $('body').hasClass 'is-homepage'
   window_height = $(window).height()
   minimum_height = 400
 
-  if is_homepage
-
-    set_heights = ->
+  # Functions
+  set_heights = ->
+    if is_homepage
       use_height = if window_height > minimum_height then window_height else minimum_height
 
       $('.hero').css
@@ -14,12 +15,32 @@ $ ->
 
       $('body').css
         paddingTop: use_height
+    else
 
-    recalculate_heights = ->
-      window_height = $(window).height()
-      set_heights()
+      $('.hero').css
+        height: ''
 
+      $('body').css
+        paddingTop: ''
+
+  body_position = ->
+    console.log "#{$(document).height()}/#{window_height}"
+    if $(document).height() > window_height
+      $('body').css
+        position: 'relative'
+    else
+      $('body').css
+        position: 'static'
+
+  # Listeners
+  $(window).resize ->
+    window_height = $(window).height()
     set_heights()
+    body_position()
 
-    $(window).resize ->
-      recalculate_heights()
+  # Initialize
+  set_heights()
+  body_position()
+
+
+

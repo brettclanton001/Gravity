@@ -1,6 +1,10 @@
 class AccountController < ApplicationController
   before_action :authenticate_user!
 
+  def uploads
+
+  end
+
   def payment_methods
 
     respond_to do |format|
