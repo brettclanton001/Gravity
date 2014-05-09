@@ -5,6 +5,31 @@ body {
   padding-top: 60px;
 }
 
+a {
+  color: #3498d9;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+
+.logo {
+  padding-top: 20px;
+
+  a {
+    text-decoration: none;
+
+    &:hover { text-decoration: none; }
+
+    span {
+      font-size: 38px;
+      font-weight: 400;
+    }
+  }
+}
+
 .login-info {
   text-align: right;
 
@@ -18,147 +43,26 @@ body {
   }
 }
 
-.is-homepage .hero {
-  background: #1f9bc9;
-  height: 600px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  z-index: 1;
+.footer {
+  background-color: #f9f9f9;
+  padding: 40px 0 20px;
+  border-top: 1px solid #ececec;
+  text-align: center;
 
-  .header {
-    position: relative;
-    margin-top: 20px;
-    color: #FFF;
-    z-index: 10;
+  nav {
 
-    a { color: #FFF; }
-
-    .logo h1 {
-      font-weight: 400;
+    a {
+      padding: 2px 5px;
+      margin: 3px 5px;
     }
   }
 
-  form {
-    display: none;
+  .copyright {
+    font-family: sans-serif;
+    color: #aeaeae;
+    padding-top: 10px;
   }
 }
-
-.history {
-  position: relative;
-  min-height: 400px;
-}
-
-
-
-// Homepage Header
-
-.homepage-header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 3;
-  color: #FFF;
-
-  .center-text {
-    position: absolute;
-    bottom: 60%;
-    left: 0;
-    right: 0;
-    text-align: center;
-
-    h1, h2, h3 {
-      font-weight: 300;
-    }
-
-    h1 {
-      font-size: 20px;
-    }
-
-    h2 {
-      font-size: 60px;
-    }
-
-    h3 {
-      font-weight: 400;
-      font-size: 14px;
-    }
-  }
-
-  .download-spot {
-    position: absolute;
-    bottom: 30%;
-    left: 0;
-    right: 0;
-    text-align: center;
-
-    p {
-      width: 300px;
-      margin: 0 auto;
-      position: relative;
-      top: 11px;
-      left: 1px;
-      /*color: #333;*/
-      font-weight: bold;
-    }
-  }
-
-  .learn-more {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    text-align: center;
-  }
-}
-
-
-
-
-// Spiral Background
-
-.sacred-geometry {
-  overflow: hidden;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
-
-  * { position: absolute; }
-
-  circles {
-    width: 0;
-    height: 0;
-    top: 70%;
-    left: 50%;
-    -webkit-animation: spin 300s infinite linear;
-    animation: spin 300s infinite linear;
-
-    circle {
-      border-radius: 50%/50%;
-      border: 2px solid #2da9d6;
-      -webkit-transition: 0.4s 0s ease-in-out;
-      transition: 0.4s 0s ease-in-out;
-    }
-  }
-}
-
-@-webkit-keyframes spin {
-  0%   { -webkit-transform: rotateZ(0deg);   }
-  100% { -webkit-transform: rotateZ(360deg); }
-}
-
-@keyframes spin {
-  0%   { transform: rotate(0deg);   }
-  100% { transform: rotate(360deg); }
-}
-
-
 
 
 

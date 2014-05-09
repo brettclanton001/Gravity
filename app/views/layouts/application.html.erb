@@ -52,7 +52,7 @@
       <div class="header container">
         <div class="row">
           <div class="logo span6">
-            <h1>Gravity</h1>
+            <%= link_to content_tag( :span, 'Gravity' ), root_path %>
           </div>
           <div class="login-info span6">
             <ul class="nav nav-pills">
@@ -92,5 +92,16 @@
       </div><!--/row-->
     </div> <!-- /container -->
 
+    <div class="footer">
+      <nav>
+        <%= link_to 'Homepage',           root_path %>
+        <%= link_to 'Privacy Policy',     privacy_path %>
+        <%= link_to 'Terms & Conditions', terms_path %>
+        <%= link_to 'Support',            support_path %>
+        <%= link_to 'Sign Up',            sign_up_path %>
+      </nav>
+      <p class="copyright">&copy; Gravity App LLC</p>
+
+    </div>
   </body>
 </html>
