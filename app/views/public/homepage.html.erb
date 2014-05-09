@@ -1,21 +1,4 @@
-<h1>Gravity</h1>
-<p>Full Ownership, no ads, variable pricing, no compression.</p>
-
-<% if current_user %>
-  <%= form_for UploadedFile.new, :html => { :multipart => true, :class => 'form-horizontal' } do |f| %>
-    <div class="control-group">
-      <div class="controls">
-        <%= f.file_field :upload %>
-      </div>
-    </div>
-
-    <div class="form-actions">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
-    </div>
-  <% end %>
-
-
-
+<div class="history">
   <table id="payment-history-list" class="table table-striped">
     <tr>
       <th>URL</th>
@@ -26,5 +9,4 @@
       </tr>
     <% end %>
   </table>
-
-<% end %>
+</div>

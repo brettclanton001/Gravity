@@ -1,5 +1,6 @@
 class PublicController < ApplicationController
   def homepage
+    @is_homepage = true
   end
 
   def terms

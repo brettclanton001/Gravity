@@ -1,0 +1,27 @@
+<div class="homepage-header">
+  <div class="center-text">
+    <h1>YOU STILL OWN IT</h1>
+    <h2>AND IT'S AWESOME</h2>
+    <h3>NO ADS, NO COMPRESSION, FULL FILE OWNERSHIP, VARIABLE PRICING</h3>
+  </div>
+
+  <div class="download-spot">
+    <p>DROP FILES HERE</p>
+  </div>
+
+  <div class="learn-more">
+    <p>LEARN MORE</p>
+  </div>
+
+  <%= form_for UploadedFile.new, :html => { :multipart => true, :class => 'form-horizontal' } do |f| %>
+    <div class="control-group">
+      <div class="controls">
+        <%= f.file_field :upload %>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

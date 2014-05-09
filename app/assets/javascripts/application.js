@@ -16,4 +16,5 @@
 //= require twitter/bootstrap
 //= require public
 //= require account
+//= require sacred_geometry
 //= require turbolinks

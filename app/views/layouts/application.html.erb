@@ -40,33 +40,47 @@
       Stripe.setPublishableKey("<%= STRIPE_PUBLIC_KEY %>");
     </script>
   </head>
-  <body>
-    <div class="header container">
-      <div class="row">
-        <div class="logo span6"></div>
-        <div class="login-info span6">
-          <ul class="nav nav-pills">
-            <% if current_user %>
-              <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                  <%= content_tag :span, current_user.email, class: 'current-user-email' %>
-                  <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                  <%= content_tag :li, link_to('Settings', account_settings_path) %>
-                  <%= content_tag :li, link_to('Payment Methods', account_payment_methods_path) %>
-                  <%= content_tag :li, link_to('Payment History', account_payment_history_path) %>
-                  <%= content_tag :li, link_to('Logout', destroy_user_session_path, method: :delete) %>
-                </ul>
-              </li>
-              <%= content_tag :li, link_to('Uploads', root_path) %>
-            <% else %>
-              <%= content_tag :li, link_to('Sign Up', new_user_registration_path) %>
-              <%= content_tag :li, link_to('Login', new_user_session_path) %>
-            <% end %>
-          </ul>
+  <body class="<%= 'is-homepage' if @is_homepage %>">
+    <div class="hero">
+
+      <% if @is_homepage %>
+        <div class="sacred-geometry">
+          <circles></circles>
+        </div>
+      <% end %>
+
+      <div class="header container">
+        <div class="row">
+          <div class="logo span6">
+            <h1>Gravity</h1>
+          </div>
+          <div class="login-info span6">
+            <ul class="nav nav-pills">
+              <% if current_user %>
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <%= content_tag :span, current_user.email, class: 'current-user-email' %>
+                    <b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <%= content_tag :li, link_to('Settings', account_settings_path) %>
+                    <%= content_tag :li, link_to('Payment Methods', account_payment_methods_path) %>
+                    <%= content_tag :li, link_to('Payment History', account_payment_history_path) %>
+                    <%= content_tag :li, link_to('Logout', destroy_user_session_path, method: :delete) %>
+                  </ul>
+                </li>
+                <%= content_tag :li, link_to('Uploads', root_path) %>
+              <% else %>
+                <%= content_tag :li, link_to('Sign Up', new_user_registration_path) %>
+                <%= content_tag :li, link_to('Login', new_user_session_path) %>
+              <% end %>
+            </ul>
+          </div>
         </div>
       </div>
+
+      <%= render 'public/homepage_header' if @is_homepage %>
+
     </div>
 
     <div class="content container">
