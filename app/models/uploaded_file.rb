@@ -34,6 +34,10 @@ class UploadedFile < ActiveRecord::Base
     open(upload_url, "rb")
   end
 
+  def short_url
+    "http://#{SHORT_DOMAIN}/i/#{token}"
+  end
+
   def type
     filename = File.basename(upload.path)
     if filename.split('.').length > 1
