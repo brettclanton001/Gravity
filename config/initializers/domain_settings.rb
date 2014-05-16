@@ -12,6 +12,6 @@ elsif Rails.env == 'test'
 else
 
   DOMAIN        = 'gravityapp.co'
-  SHORT_DOMAIN  = 'gtvy.co'
+  SHORT_DOMAIN  = 'gvty.co'
 
 end
