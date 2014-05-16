@@ -54,9 +54,9 @@ $ ->
     setInterval ->
       if big
         big = false
-        set_dilation 0.6
+        set_dilation 0.2
       else
         big = true
         set_dilation 0.8
-    , 2000
+    , 12000
 
