@@ -17,7 +17,7 @@
         <th>When?</th>
       </tr>
       <tbody class="data">
-        <% current_user.uploaded_files.last(20).each do |file| %>
+        <% current_user.uploaded_files.order('created_at DESC').first(20).each do |file| %>
           <tr>
             <td><%= link_to file.short_url, file.short_url, target: '_blank' %></td>
             <td><%= time_ago file %></td>
