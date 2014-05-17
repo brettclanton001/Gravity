@@ -20,4 +20,3 @@
 //= require sacred_geometry
 //= require uploads
 //= require dropzone
-//= require turbolinks
