@@ -50,13 +50,19 @@ $ ->
         $("circle##{i}").css
           transform: "translate(#{l}px,#{t}px)"
 
-    big = true
-    setInterval ->
-      if big
-        big = false
-        set_dilation 0.2
-      else
-        big = true
-        set_dilation 0.8
-    , 12000
+    $('#upload-page-dropzone').on 'mouseover', ->
+      set_dilation 0.2
+
+    $('#upload-page-dropzone').on 'mouseout', ->
+      set_dilation 0.8
+
+    #big = true
+    #setInterval ->
+      #if big
+        #big = false
+        #set_dilation 0.2
+      #else
+        #big = true
+        #set_dilation 0.8
+    #, 12000
 

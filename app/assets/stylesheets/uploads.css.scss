@@ -1,7 +1,8 @@
 #upload-page-dropzone {
   position: relative;
   width: 500px;
-  height: 500px;
+  height: 400px;
+  margin-top: 80px;
   cursor: pointer;
   z-index: 10;
 
@@ -17,7 +18,7 @@
 // Spiral Background
 .upload-page-spiral {
   position: absolute;
-  top: 20px;
+  top: 80px;
   left: 0;
   width: 500px;
   height: 500px;
@@ -37,8 +38,8 @@
     circle {
       border-radius: 50%/50%;
       border: 2px solid #2da9d6;
-      -webkit-transition: 11.5s 0s ease-in-out;
-      transition: 11.5s 0s ease-in-out;
+      -webkit-transition: 0.5s 0s ease-in-out;
+      transition: 0.5s 0s ease-in-out;
     }
   }
 }
