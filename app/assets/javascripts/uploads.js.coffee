@@ -10,6 +10,12 @@ $ ->
         <td class=\"time\" data-time=\"#{file.created_at}\">just now</td>
       </tr>"
 
+  window.dz_upload_progress = (percent)->
+    if percent == 100
+      $('.upload-page-spiral').removeClass 'fast'
+    else
+      $('.upload-page-spiral').addClass 'fast'
+
   update_times = ->
     $.each $('#uploads-page-file-list .time'), (i, td)->
       time = Date.parse $(td).attr('data-time')

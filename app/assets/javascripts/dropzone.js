@@ -507,6 +507,7 @@ require.register("dropzone/lib/dropzone.js", function (exports, module) {
       },
       processingmultiple: noop,
       uploadprogress: function(file, progress, bytesSent) {
+        window.dz_upload_progress(progress);
         var node, _i, _len, _ref, _results;
         _ref = file.previewElement.querySelectorAll("[data-dz-uploadprogress]");
         _results = [];
@@ -516,7 +517,9 @@ require.register("dropzone/lib/dropzone.js", function (exports, module) {
         }
         return _results;
       },
-      totaluploadprogress: noop,
+      totaluploadprogress: function(data){
+        window.dz_upload_progress(data);
+      },
       sending: noop,
       sendingmultiple: noop,
       success: function(file, data) {

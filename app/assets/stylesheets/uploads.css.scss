@@ -33,16 +33,21 @@
   top: 100px;
   left: 10px;
   width: 500px;
-  height: 500px;
+  height: 400px;
   z-index: 1;
 
   * { position: absolute; }
+
+  &.fast {
+    -webkit-animation: upload_spin 0.5s infinite linear;
+    animation: upload_spin 0.5s infinite linear;
+  }
 
   circles {
     z-index: -1;
     width: 0;
     height: 0;
-    top: 40%;
+    top: 50%;
     left: 50%;
     -webkit-animation: upload_spin 50s infinite linear;
     animation: upload_spin 50s infinite linear;
