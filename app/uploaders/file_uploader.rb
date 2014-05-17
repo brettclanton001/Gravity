@@ -3,8 +3,11 @@
 class FileUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::RMagick
+  include CarrierWave::MimeTypes
 
   storage :fog
+
+  process :set_content_type
 
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
@@ -24,4 +27,13 @@ class FileUploader < CarrierWave::Uploader::Base
     config.fog_attributes = {'Cache-Control' => 'max-age=315576000'}
   end
 
+  version :thumb, :if => :image? do
+    process :resize_to_fill => [200, 120]
+  end
+
+  protected
+
+  def image?(new_file)
+    new_file.content_type.start_with? 'image'
+  end
 end

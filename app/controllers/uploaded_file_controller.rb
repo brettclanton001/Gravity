@@ -17,7 +17,7 @@ class UploadedFileController < ApplicationController
     respond_to do |format|
       if file.save
         format.html { redirect_to root_path, notice: 'Uploaded image was successfully created.' }
-        format.json { render json: {id: file.id, url: file.short_url, token: file.token} }
+        format.json { render json: {id: file.id, url: file.short_url, thumbnail: file.thumbnail, token: file.token, created_at: file.created_at} }
       else
         format.html { redirect_to root_path, notice: 'Something went wrong.' }
         format.json { render json: file.errors, status: :unprocessable_entity }

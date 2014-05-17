@@ -12,15 +12,12 @@
   <div class="span6">
     <h4>Your Uploads</h4>
     <table id="uploads-page-file-list" class="table-striped table">
-      <tr>
-        <th>Where?</th>
-        <th>When?</th>
-      </tr>
       <tbody class="data">
         <% current_user.uploaded_files.order('created_at DESC').first(20).each do |file| %>
           <tr>
-            <td><%= link_to file.short_url, file.short_url, target: '_blank' %></td>
-            <td><%= time_ago file %></td>
+            <td class="image"><%= link_to image_tag(file.thumbnail), file.short_url, target: '_blank' %></td>
+            <td class="url"><%= link_to file.short_url, file.short_url, target: '_blank' %></td>
+            <td class="time" data-time="<%= file.created_at.as_json %>"><%= time_ago file %></td>
           </tr>
         <% end %>
       </tbody>

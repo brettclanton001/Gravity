@@ -10,6 +10,19 @@ class UploadedFile < ActiveRecord::Base
   validates_uniqueness_of :token
 
   before_create :record_file_size
+  before_create :record_content_type
+
+  def thumbnail
+    if type.start_with? 'image'
+      upload_url(:thumb)
+    else
+      '/assets/file_icon.png'
+    end
+  end
+
+  def record_content_type
+    self.content_type = upload.content_type
+  end
 
   def record_file_size
     self.file_size = upload.file.size
@@ -39,19 +52,8 @@ class UploadedFile < ActiveRecord::Base
   end
 
   def type
-    filename = File.basename(upload.path)
-    if filename.split('.').length > 1
-      extension = filename.split('.').last.downcase
-      if IMAGE_EXTENSIONS.include?(extension)
-        "image/#{extension}"
-      elsif extension == 'pdf'
-        "file/pdf"
-      else
-        "file/#{extension}"
-      end
-    else
-      ''
-    end
+    update_attribute(:content_type, upload.content_type) unless content_type
+    content_type
   end
 
   def log_file_request
