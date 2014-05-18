@@ -54,6 +54,18 @@ class User < ActiveRecord::Base
     c.s3_cost
   end
 
+  def current_charge
+    c = CostCalculator.new
+    c.bytes = current_byte_usage
+    c.charge
+  end
+
+  def current_final_charge
+    c = CostCalculator.new
+    c.bytes = current_byte_usage
+    c.final_charge
+  end
+
   def current_byte_usage
     file_ids = self.uploaded_files.pluck(:id)
     unpaid_requests = FileRequest.where( uploaded_file_id: file_ids, user_charge_id: nil )

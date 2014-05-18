@@ -50,6 +50,18 @@ a {
   }
 }
 
+#homepage-file-list {
+
+  td.image {
+   text-align: center;
+     img {
+      width: auto;
+      height: auto;
+      max-height: 60px;
+    }
+  }
+}
+
 .footer {
   position: absolute;
   bottom: 0;
