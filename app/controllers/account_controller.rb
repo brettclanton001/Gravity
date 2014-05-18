@@ -1,12 +1,12 @@
 class AccountController < ApplicationController
   before_action :authenticate_user!
+  skip_before_action :verify_authenticity_token
 
   def uploads
 
   end
 
   def payment_methods
-
     respond_to do |format|
       format.html
       format.json { render json: current_user.payment_methods}
@@ -14,7 +14,6 @@ class AccountController < ApplicationController
   end
 
   def payment_history
-
     respond_to do |format|
       format.html
       format.json { render json: current_user.payment_history}
