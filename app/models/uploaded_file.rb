@@ -28,6 +28,13 @@ class UploadedFile < ActiveRecord::Base
     self.file_size = upload.file.size
   end
 
+  def size
+    return file_size if file_size
+    record_file_size()
+    save
+    file_size
+  end
+
   def self.find_with_token token
     where(token: token).first
   end

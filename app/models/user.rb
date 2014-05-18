@@ -59,7 +59,10 @@ class User < ActiveRecord::Base
     unpaid_requests = FileRequest.where( uploaded_file_id: file_ids, user_charge_id: nil )
     byte_usage = 0
     unpaid_requests.each do |r|
-      byte_usage += r.requests * r.uploaded_file.file_size
+      # I'm adding 1 to the requests count to account for the original upload
+      requests = r.requests + 1
+      size = r.uploaded_file.size || 0
+      byte_usage += requests * size
     end
     byte_usage
   end
