@@ -1,6 +1,6 @@
 require "stripe"
 
-if Rails.env == 'promotion'
+if Rails.env == 'production'
   Stripe.api_key = "UYLCpHFvWkGa0XBeQv07VDtBLwZkXYVR"
   STRIPE_PUBLIC_KEY = 'pk_NGeEB7xYy2V140P5EoQwyTepXxD13'
 else
