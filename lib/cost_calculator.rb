@@ -16,8 +16,8 @@ class CostCalculator
 
   def charge # in cents
     cost = s3_cost * CHARGE_TO_COST
-    percent = (cost * STRIPE_PERCENT) * (1 + STRIPE_PERCENT) # higher level of acturacy
-    (cost + percent + STRIPE_EXTRA).ceil
+    cost = ((cost * 1.00) / (100 - (STRIPE_PERCENT * 100.00))) * 100
+    (cost + STRIPE_EXTRA).ceil
   end
 
   def final_charge # in cents

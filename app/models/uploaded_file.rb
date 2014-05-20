@@ -25,7 +25,7 @@ class UploadedFile < ActiveRecord::Base
   end
 
   def record_file_size
-    self.file_size = upload.file.size
+    self.file_size = upload.file.size if upload.present? && upload.file.present?
   end
 
   def size

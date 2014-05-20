@@ -40,37 +40,89 @@ class User < ActiveRecord::Base
     Stripe::Charge.all(customer: stripe_customer_token)
   end
 
-  def new_charge amount
-    Stripe::Charge.create(
+  def self.charge_users
+    find_charge_worthy_users.each do |user|
+      period = user.unpaid_request_payable_period
+      user.new_charge user.current_final_charge(true), period[:start], period[:end]
+    end
+  end
+
+  def self.find_charge_worthy_users
+    file_ids = FileRequest
+      .where(["end_date < ? AND user_charge_id IS NULL", Date.today.at_beginning_of_month])
+      .pluck(:uploaded_file_id).uniq
+    user_ids = UploadedFile.where(id: file_ids).pluck(:user_id).uniq
+    User.where(id: user_ids)
+  end
+
+  def new_charge amount, start_date, end_date
+    charge = UserCharge.new({
+      user_id: id,
+      amount: amount,
+      period_start: start_date,
+      period_end: end_date
+    })
+    charge.success = Stripe::Charge.create(
       amount: amount,
       currency: 'usd',
       customer: stripe_customer_token
-    )
+    )["paid"] rescue false
+    charge.save
+    if charge.success
+      FileRequest
+        .where(["end_date < ? AND user_charge_id IS NULL", Date.today.at_beginning_of_month])
+        .update_all(user_charge_id: charge.id)
+    end
   end
 
-  def current_cost
+  def unpaid_request_payable_period
+    file_ids = self.uploaded_files.pluck(:id)
+    start = FileRequest.select(:start_date).where([
+      "uploaded_file_id IN (?) AND end_date < ? AND user_charge_id IS NULL",
+      file_ids,
+      Date.today.at_beginning_of_month
+    ]).order("start_date ASC").first.start_date
+    { start: start, end: (Date.today - 1.month).at_end_of_month }
+  end
+
+  def unpaid_requests payable
+    file_ids = self.uploaded_files.pluck(:id)
+    if payable
+      FileRequest.where([
+        "uploaded_file_id IN (?) AND end_date < ? AND user_charge_id IS NULL",
+        file_ids,
+        Date.today.at_beginning_of_month
+      ])
+    else
+      FileRequest.where([
+        "uploaded_file_id IN (?) AND user_charge_id IS NULL",
+        file_ids
+      ])
+    end
+  end
+
+  def current_cost only_payable = false
     c = CostCalculator.new
-    c.bytes = current_byte_usage
+    c.bytes = current_byte_usage only_payable
     c.s3_cost
   end
 
-  def current_charge
+  def current_charge only_payable = false
     c = CostCalculator.new
-    c.bytes = current_byte_usage
+    c.bytes = current_byte_usage only_payable
     c.charge
   end
 
-  def current_final_charge
+  def current_final_charge only_payable = false
     c = CostCalculator.new
-    c.bytes = current_byte_usage
+    c.bytes = current_byte_usage only_payable
     c.final_charge
   end
 
-  def current_byte_usage
-    file_ids = self.uploaded_files.pluck(:id)
-    unpaid_requests = FileRequest.where( uploaded_file_id: file_ids, user_charge_id: nil )
+  def current_byte_usage only_payable = false
+    requests = unpaid_requests only_payable
     byte_usage = 0
-    unpaid_requests.each do |r|
+    requests.each do |r|
       # I'm adding 1 to the requests count to account for the original upload
       requests = r.requests + 1
       size = r.uploaded_file.size || 0
