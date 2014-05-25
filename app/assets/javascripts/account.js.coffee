@@ -39,6 +39,7 @@ $ ->
             table_html += format_payment_history_row payment
           payment_history_table.find('.loading-payment-history').remove()
           payment_history_table.append table_html
+          window.update_page_height()
         .fail (error)->
           build_page_flash_method 'We\'re sorry, something went wrong while loading your Payment History.', 'error'
 
@@ -97,6 +98,7 @@ $ ->
             table_html += format_payment_method_row payment_method
           payment_method_table.find('.loading-payment-methods').remove()
           payment_method_table.append table_html
+          window.update_page_height()
         .fail (error)->
           build_page_flash_method 'We\'re sorry, something went wrong while loading your Payment Methods.', 'error'
 

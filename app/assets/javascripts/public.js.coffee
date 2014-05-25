@@ -31,6 +31,9 @@ $ ->
       $('body').css
         position: 'static'
 
+  window.update_page_height = ->
+    body_position()
+
   # Listeners
   $(window).resize ->
     window_height = $(window).height()

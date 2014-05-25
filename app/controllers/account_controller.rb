@@ -3,7 +3,7 @@ class AccountController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def uploads
-
+    redirect_to account_payment_methods_path, alert: 'You must have an active payment method on file to use this application.' unless current_user.active_payments
   end
 
   def payment_methods
@@ -24,7 +24,8 @@ class AccountController < ApplicationController
   end
 
   def add_user_card
-    render json: current_user.stripe_customer.cards.create({card: params[:token]})
+    new_card = current_user.stripe_customer.cards.create({card: params[:token]})
+    current_user.update_attribute(:active_payments, true) unless current_user.active_payments
+    render json: new_card
   end
-
 end

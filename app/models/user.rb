@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
       .where(["end_date < ? AND user_charge_id IS NULL", Date.today.at_beginning_of_month])
       .pluck(:uploaded_file_id).uniq
     user_ids = UploadedFile.where(id: file_ids).pluck(:user_id).uniq
-    User.where(id: user_ids)
+    User.where(id: user_ids).map {|u| u if u.current_final_charge(true) >= MINIMUM_VALID_CHARGE }.compact
   end
 
   def new_charge amount, start_date, end_date
@@ -116,7 +116,8 @@ class User < ActiveRecord::Base
   def current_final_charge only_payable = false
     c = CostCalculator.new
     c.bytes = current_byte_usage only_payable
-    c.final_charge
+    charge = c.final_charge
+    charge - (charge * discount_percent)
   end
 
   def current_byte_usage only_payable = false
