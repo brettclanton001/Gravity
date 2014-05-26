@@ -63,7 +63,7 @@
                     <b class="caret"></b>
                   </a>
                   <ul class="dropdown-menu">
-                    <%= content_tag :li, link_to('Settings', account_settings_path) %>
+                    <%= content_tag :li, link_to('Settings', edit_user_registration_path) %>
                     <%= content_tag :li, link_to('Payment Methods', account_payment_methods_path) %>
                     <%= content_tag :li, link_to('Payment History', account_payment_history_path) %>
                     <%= content_tag :li, link_to('Logout', destroy_user_session_path, method: :delete) %>

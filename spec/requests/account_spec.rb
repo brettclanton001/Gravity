@@ -18,7 +18,7 @@ describe AccountController do
 
   describe "GET 'settings'" do
     it "returns http success" do
-      get '/account/settings'
+      get edit_user_registration_path
       response.should_not be_success
     end
   end

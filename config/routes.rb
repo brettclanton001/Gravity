@@ -25,7 +25,6 @@ Gravity::Application.routes.draw do
 
   get "/account/payment_methods"
   get "/account/payment_history"
-  get "/account/settings"
   post "/api/add_user_card" => "account#add_user_card"
   get  "/api/user_payment_methods" => "account#payment_methods"
   get  "/api/user_payment_history" => "account#payment_history"
