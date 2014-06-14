@@ -38,7 +38,11 @@
 
 .homepage-section {
   position: relative;
-  min-height: 400px;
+
+  &.copy-section {
+    max-width: 850px;
+    margin: auto;
+  }
 
   .section-header {
     text-align: center;
