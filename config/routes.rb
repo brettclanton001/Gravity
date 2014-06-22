@@ -3,6 +3,7 @@ Gravity::Application.routes.draw do
   # Public Stuff
 
   root "public#homepage"
+  get "/home" => "public#home"
 
   get "/terms"    => "public#terms"
   get "/conditions", to: redirect('/terms')

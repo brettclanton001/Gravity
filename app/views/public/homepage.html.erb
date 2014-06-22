@@ -75,7 +75,7 @@
   <p>
     Another problem that is hard to avoid with image hosting websites, is that you often lose
     ownership of your content.  Many sites have terms and condition that state that you
-    transfer ownership of the image to them when you upload.  This is a big problem if you're,
+    transfer ownership of the image to them when you upload.  This is a big problem if you're:
     a graphic designer, painter, photographer, or anyone else that needs to retain your
     digital property.
   </p>
@@ -90,42 +90,41 @@
     know you don't lose it.
   </p>
   <p>
-    <strong>We have fair pricing.</strong>  You're paying a lot for your current account, I bet you'd be
-    shocked if you saw how much you are really costing them.  You're paying $5/month or
-    more, and your usage likely costs them $0.10/month or less.  Here at Gravity, we have
+    <strong>We have fair pricing.</strong> Here at Gravity, we have
     variable pricing.  That means that what you pay is directly related to what your storage
-    and bandwidth costed us.
+    and bandwidth costed us.  No more paying $5+ dollars per month for a service you only bairly use.
   </p>
   <p>
     <strong>You still own it.</strong>  Gravity is only hosting your content on your behalf.
     You retain any and all ownership that you had before uploading the file to Gravity.
   </p>
 </div>
+<% unless current_user %>
+  <div class="sign-up-section homepage-section">
+    <p class="section-header">Sign up now</p>
 
-<div class="sign-up-section homepage-section">
-  <p class="section-header">Sign up now</p>
+    <form accept-charset="UTF-8" action="/users" class="new_user" id="new_user" method="post">
+      <div style="margin:0;padding:0;display:inline">
+        <input name="utf8" type="hidden" value="✓" />
+        <input name="authenticity_token" type="hidden" value="b9sOP9tnmtkINwrD+SqLndN1o747rHZrC4eU17AC698=" />
+      </div>
 
-  <form accept-charset="UTF-8" action="/users" class="new_user" id="new_user" method="post">
-    <div style="margin:0;padding:0;display:inline">
-      <input name="utf8" type="hidden" value="✓" />
-      <input name="authenticity_token" type="hidden" value="b9sOP9tnmtkINwrD+SqLndN1o747rHZrC4eU17AC698=" />
-    </div>
+      <div>
+        <label for="user_email">Email</label>
+        <input id="user_email" name="user[email]" type="email" value="" />
+      </div>
 
-    <div>
-      <label for="user_email">Email</label>
-      <input id="user_email" name="user[email]" type="email" value="" />
-    </div>
+      <div>
+        <label for="user_password">Password</label>
+        <input id="user_password" name="user[password]" type="password" />
+      </div>
 
-    <div>
-      <label for="user_password">Password</label>
-      <input id="user_password" name="user[password]" type="password" />
-    </div>
+      <div>
+        <label for="user_password_confirmation">Password confirmation</label>
+        <input id="user_password_confirmation" name="user[password_confirmation]" type="password" />
+      </div>
 
-    <div>
-      <label for="user_password_confirmation">Password confirmation</label>
-      <input id="user_password_confirmation" name="user[password_confirmation]" type="password" />
-    </div>
-
-    <div><input name="commit" type="submit" value="Sign up"></div>
-  </form>
-</div>
+      <div><input name="commit" type="submit" value="Sign up"></div>
+    </form>
+  </div>
+<% end %>

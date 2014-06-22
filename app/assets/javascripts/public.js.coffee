@@ -40,6 +40,10 @@ $ ->
     set_heights()
     body_position()
 
+  $('.learn-more p').on 'click', ->
+    $('html, body').animate
+      scrollTop: window_height
+
   # Initialize
   set_heights()
   body_position()

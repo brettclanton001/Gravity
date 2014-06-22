@@ -1,6 +1,7 @@
 $ ->
+  is_homepage = $('body').hasClass 'is-homepage'
 
-  if window.location.pathname == '/'
+  if is_homepage
 
     n = 50   # number of overlapping circles
     d = 1200 # diameter of circles (px)
