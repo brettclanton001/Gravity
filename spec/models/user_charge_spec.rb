@@ -7,6 +7,8 @@ describe UserCharge do
     u2 = FactoryGirl.create(:user, email: 'fakeotheremail2@example.com')
     u3 = FactoryGirl.create(:user, email: 'fakeotheremail3@example.com', discount_percent: 100)
     u4 = FactoryGirl.create(:user, email: 'fakeotheremail4@example.com')
+    u5 = FactoryGirl.create(:user, email: 'fakeotheremail5@example.com', active: false)
+    u6 = FactoryGirl.create(:user, email: 'fakeotheremail6@example.com', active_payments: false)
     f1 = FactoryGirl.create(:uploaded_file, token: 'f1', user_id: u2.id, file_size: 1234534213)
     FactoryGirl.create( # not old enough to charge
       :file_request,
@@ -65,7 +67,7 @@ describe UserCharge do
   end
 
   it "should identify the user that needs to be charged" do
-    User.find_charge_worthy_users.count.should be 1
+    User.find_charge_worthy_users.count.should be 3
   end
 
   it "should not charge users with no active cards" do

@@ -5,6 +5,7 @@ class CostCalculator
   CHARGE_TO_COST  = 2.00
   STRIPE_PERCENT  = 0.029 # 2.9 percent per transaction
   STRIPE_EXTRA    = 30 # cents per transaction
+  MAXIMUM_CHARGE  = 500
   MINIMUM_CHARGE  = 50
 
   attr_writer :bytes
@@ -21,7 +22,9 @@ class CostCalculator
   end
 
   def final_charge # in cents
-    if charge > MINIMUM_CHARGE
+    if charge > MAXIMUM_CHARGE
+      MAXIMUM_CHARGE
+    elsif charge > MINIMUM_CHARGE
       charge
     else
       MINIMUM_CHARGE

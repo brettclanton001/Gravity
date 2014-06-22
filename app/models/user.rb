@@ -52,7 +52,8 @@ class User < ActiveRecord::Base
       .where(["end_date < ? AND user_charge_id IS NULL", Date.today.at_beginning_of_month])
       .pluck(:uploaded_file_id).uniq
     user_ids = UploadedFile.where(id: file_ids).pluck(:user_id).uniq
-    User.where(id: user_ids).map {|u| u if u.current_final_charge(true) >= MINIMUM_VALID_CHARGE }.compact
+    #User.where(id: user_ids).map {|u| u if u.current_final_charge(true) >= MINIMUM_VALID_CHARGE }.compact
+    User.where(id: user_ids, active: true, active_payments: true)
   end
 
   def new_charge amount, start_date, end_date

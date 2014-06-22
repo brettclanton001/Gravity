@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "Account/Stripe functionality" do
   before do
-    @user = create :confirmed_user
+    @user = create :confirmed_user_pre_payment
     visit root_path
     click_link 'Login'
     within("#new_user") do
