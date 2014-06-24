@@ -82,13 +82,13 @@ Gravity::Application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :enable_starttls_auto => true,
-    :address => "smtp.gmail.com",
-    :port => 587,
-    :domain => "gmail.com",
+    :ssl => true,
+    :address => "smtp.zoho.com",
+    :port => 465,
+    :domain => "gravityapp.co",
     :authentication => :login,
-    :user_name => "brettclanton001@gmail.com",
-    :password => ENV['GMAIL_PASSWORD']
+    :user_name => "robot@gravityapp.co",
+    :password => ENV['ZOHO_PASSWORD']
   }
 
 end
