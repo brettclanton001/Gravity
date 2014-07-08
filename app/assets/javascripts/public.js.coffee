@@ -34,6 +34,11 @@ $ ->
   window.update_page_height = ->
     body_position()
 
+  fade_out_flash_messages = ->
+    setTimeout ->
+      $('.alert').fadeOut(500)
+    , 5000
+
   # Listeners
   $(window).resize ->
     window_height = $(window).height()
@@ -47,6 +52,7 @@ $ ->
   # Initialize
   set_heights()
   body_position()
+  fade_out_flash_messages()
 
 
 

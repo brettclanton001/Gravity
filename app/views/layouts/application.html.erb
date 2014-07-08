@@ -71,8 +71,9 @@
                 </li>
                 <%= content_tag :li, link_to('Uploads', uploads_path) %>
               <% else %>
-                <%= content_tag :li, link_to('Sign Up', new_user_registration_path) %>
                 <%= content_tag :li, link_to('Login', new_user_session_path) %>
+                <%= content_tag :li, link_to('Sign Up', new_user_registration_path) %>
+                <%= content_tag :li, link_to('Pricing', pricing_path) %>
               <% end %>
             </ul>
           </div>
@@ -95,13 +96,22 @@
     <div class="footer">
       <nav>
         <%= link_to 'Homepage',           root_path %>
+        <%= link_to 'Pricing',            pricing_path %>
         <%= link_to 'Privacy Policy',     privacy_path %>
         <%= link_to 'Terms & Conditions', terms_path %>
-        <%= link_to 'Support',            support_path %>
-        <%= link_to 'Sign Up',            sign_up_path %>
+        <%= link_to 'Support',            support_path, target: '_blank' %>
+
+        <% if current_user %>
+          <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+        <% else %>
+          <%= link_to 'Login', new_user_session_path %>
+          <%= link_to 'Sign Up', sign_up_path %>
+        <% end %>
+
       </nav>
-      <p class="copyright">&copy; Gravity App LLC</p>
+      <p class="copyright">&copy; Gravity App - Power Chord LLC</p>
 
     </div>
+    <%= render 'shared/uservoice' %>
   </body>
 </html>

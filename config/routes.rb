@@ -5,13 +5,15 @@ Gravity::Application.routes.draw do
   root "public#homepage"
   get "/home" => "public#home"
 
+  get "/pricing"    => "public#pricing"
+
   get "/terms"    => "public#terms"
   get "/conditions", to: redirect('/terms')
 
   get "/privacy"  => "public#privacy"
 
-  get "/support"  => "public#support"
-  get "/contact", to: redirect('/support')
+  get "/support", to: redirect('http://gravityapp.uservoice.com'), as: :support
+  get "/contact", to: redirect('http://gravityapp.uservoice.com')
 
   # Devise / User routes
 

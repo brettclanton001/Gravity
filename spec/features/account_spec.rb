@@ -4,7 +4,9 @@ describe "Account/Stripe functionality" do
   before do
     @user = create :confirmed_user_pre_payment
     visit root_path
-    click_link 'Login'
+    within '.header' do
+      click_link 'Login'
+    end
     within("#new_user") do
       fill_in 'Email', :with => @user.email
       fill_in 'Password', :with => @user.password

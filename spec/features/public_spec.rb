@@ -56,15 +56,4 @@ describe "Public Paths" do
 
   end
 
-  describe "Support" do
-    before do
-      visit '/support'
-    end
-
-    it "Should have a header" do
-      page.should have_text('Contacting Support')
-    end
-
-  end
-
 end
