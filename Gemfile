@@ -19,6 +19,7 @@ gem 'stripe'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'fog'
+gem 'newrelic_rpm'
 
 group :doc do
   gem 'sdoc', require: false
