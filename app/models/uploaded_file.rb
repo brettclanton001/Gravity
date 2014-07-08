@@ -86,4 +86,8 @@ class UploadedFile < ActiveRecord::Base
     end
     current_log
   end
+
+  def self.clean_up_unregistered_files
+    UploadedFile.where([" user_id IS NULL AND created_at < ?", Time.now - 10.minutes ]).destroy_all
+  end
 end
