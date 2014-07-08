@@ -45,7 +45,7 @@ class UploadedFile < ActiveRecord::Base
       tmp_file = open(Rails.cache.read([:file_path, id]))
     rescue
       tmp_file = uploaded_file
-      Rails.cache.write([:file_path, id], tmp_file.to_path)
+      Rails.cache.write([:file_path, id], tmp_file.to_path) rescue nil
     end
     tmp_file
   end
