@@ -23,9 +23,8 @@ $ ->
         $('.homepage-section.history').css
           minHeight: $('.homepage-section.history').height()
         $('#homepage-file-list tbody.data').html '<tr class="loading-spinner"><td><i class="icon-spinner icon-spin icon-large"></i></td></tr>'
-
-      $('html, body').animate
-        scrollTop: $(window).height()
+        $('html, body').animate
+          scrollTop: $(window).height()
 
       update_times = ->
         $.each $('#homepage-file-list .time'), (i, td)->
