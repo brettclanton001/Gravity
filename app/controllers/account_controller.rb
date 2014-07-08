@@ -3,6 +3,7 @@ class AccountController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def uploads
+    @is_upload_page = true
     if !current_user.active_payments && current_user.discount_percent < 100
       redirect_to account_payment_methods_path, alert: 'You must have an active payment method on file to use this application.'
     end

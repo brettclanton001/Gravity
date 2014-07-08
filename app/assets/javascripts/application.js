@@ -19,4 +19,5 @@
 //= require account
 //= require sacred_geometry
 //= require uploads
+//= require homepage
 //= require dropzone

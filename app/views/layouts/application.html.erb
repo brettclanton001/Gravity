@@ -40,7 +40,7 @@
       Stripe.setPublishableKey("<%= STRIPE_PUBLIC_KEY %>");
     </script>
   </head>
-  <body class="<%= 'is-homepage' if @is_homepage %>">
+  <body class="<%= 'is-homepage' if @is_homepage %> <%= 'is-upload-page' if @is_upload_page %>">
     <div class="hero">
 
       <% if @is_homepage %>
@@ -52,7 +52,7 @@
       <div class="header container">
         <div class="row">
           <div class="logo span6">
-            <%= link_to content_tag( :span, 'Gravity' ), '/home' %>
+            <%= link_to content_tag( :span, 'Gravity' ), homepage_path %>
           </div>
           <div class="login-info span6">
             <ul class="nav nav-pills">
@@ -71,8 +71,8 @@
                 </li>
                 <%= content_tag :li, link_to('Uploads', uploads_path) %>
               <% else %>
-                <%= content_tag :li, link_to('Login', new_user_session_path) %>
                 <%= content_tag :li, link_to('Sign Up', new_user_registration_path) %>
+                <%= content_tag :li, link_to('Login', new_user_session_path) %>
                 <%= content_tag :li, link_to('Pricing', pricing_path) %>
               <% end %>
             </ul>
@@ -95,7 +95,7 @@
 
     <div class="footer">
       <nav>
-        <%= link_to 'Homepage',           root_path %>
+        <%= link_to 'Homepage',           homepage_path %>
         <%= link_to 'Pricing',            pricing_path %>
         <%= link_to 'Privacy Policy',     privacy_path %>
         <%= link_to 'Terms & Conditions', terms_path %>

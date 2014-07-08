@@ -13,7 +13,7 @@ class UploadedFileController < ApplicationController
       file.token = SecureRandom.urlsafe_base64(4)
       break if UploadedFile.where(token: file.token).count == 0
     end
-    file.user_id = current_user.id
+    file.user_id = current_user.id if current_user
     respond_to do |format|
       if file.save
         format.html { redirect_to root_path, notice: 'Uploaded image was successfully created.' }

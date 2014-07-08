@@ -3,7 +3,7 @@ Gravity::Application.routes.draw do
   # Public Stuff
 
   root "public#homepage"
-  get "/home" => "public#home"
+  get "/home" => "public#home", as: :homepage
 
   get "/pricing"    => "public#pricing"
 
