@@ -2,13 +2,31 @@
 
 <div>
   <h3>
+    Uploaded Files
+  </h3>
+
+  <p>
+    We do not own the creative rights to any files that you ( the user ) uploads to our service.  We are only hosting the file on your behalf.
+  </p>
+
+  <p>
+    Any file you upload is instantly public.  It has a unique url that could be guessed.  No not assume anything you upload to Gravity is private.
+  </p>
+
+  <p>
+    We retain the right to deny service and/or delete files from our system that we deem inappropriate or illegal.
+  </p>
+
+  <p>
+    You should not use Gravity as the sole location for your files.  Always keep backups on your personal machine(s).
+  </p>
+
+  <h3>
     What information do we collect?
   </h3>
 
   <p>
-    Google, as a third party vendor, uses cookies to serve ads on your site.
-    Google's use of the DART cookie enables it to serve ads to your users based on their visit to your sites and other sites on the Internet.
-    Users may opt out of the use of the DART cookie by visiting the Google ad and content network privacy policy..
+    Gravity may collect ip addresses and any other information required for registration including email and credit card information ( upon user submission of these fields ).
   </p>
 
   <h3>
@@ -41,11 +59,11 @@
   </p>
 
   <p>
-    We offer the use of a secure server. All supplied sensitive/credit information is transmitted via Secure Socket Layer (SSL) technology and then encrypted into our Database to be only accessed by those authorized with special access rights to our systems, and are required to?keep the information confidential. 
+    We offer the use of a secure credit card service. All supplied credit information is transmitted via Secure Socket Layer (SSL) technology to a third-party service called Stripe.  The information is then encrypted into Stripe's Database to be only accessed by those authorized with special access rights to our systems, and Stripe is required to keep the information confidential.  More information can be found at <%= link_to 'Stripe.com', 'https://stripe.com/', target: '_blank' %>
   </p>
 
   <p>
-    After a transaction, your private information (credit cards, social security numbers, financials, etc.) will not be stored on our servers.
+    Your private information (credit cards, social security numbers, financials, etc.) will never be stored on our ( Gravity's ) servers.
   </p>
 
   <h3>
@@ -53,7 +71,7 @@
   </h3>
 
   <p>
-    Yes (Cookies are small files that a site or its service provider transfers to your computers hard drive through your Web browser (if you allow) that enables the sites or service providers systems to recognize your browser and capture and remember certain information
+    Yes (Cookies are small files that a site or its service provider transfers to your computers hard drive through your Web browser (if you allow) that enables the sites or service providers systems to recognize your browser and capture and remember certain information.
   </p>
 
   <p>
@@ -106,7 +124,7 @@
 
   <p>
     Please also visit our Terms and Conditions section establishing the use, disclaimers, and limitations of liability governing the use of our website at 
-    <a href="/terms">Terms and Conditions Page</a>
+    <%= link_to 'Terms and Conditions Page', terms_path %>
   </p>
 
   <h3>
@@ -126,7 +144,7 @@
   </p>
 
   <p>
-    This policy was last modified on 2014-02-13
+    This policy was last modified on 2014-07-08
   </p>
 
   <h3>
@@ -138,7 +156,6 @@
   </p>
 
   <p>
-    <a href="/support">User Support Page</a>
-
+    <%= link_to 'User Support Portal', support_path, target: '_blank' %>
   </p>
 </div>
