@@ -170,6 +170,8 @@ GEM
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
+    sitemap_generator (5.0.4)
+      builder
     slop (3.5.0)
     sprockets (2.11.0)
       hike (~> 1.2)
@@ -231,6 +233,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 4.0.2)
   sdoc
+  sitemap_generator
   stripe
   therubyracer
   turbolinks

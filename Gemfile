@@ -21,6 +21,7 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'fog'
 gem 'newrelic_rpm'
+gem 'sitemap_generator'
 
 group :doc do
   gem 'sdoc', require: false
