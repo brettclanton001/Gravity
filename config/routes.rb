@@ -12,6 +12,7 @@ Gravity::Application.routes.draw do
 
   get "/privacy"  => "public#privacy"
 
+  get "/feature_suggestion", to: redirect('http://gravityapp.uservoice.com/forums/258270-general'), as: :feature_suggestion
   get "/support", to: redirect('http://gravityapp.uservoice.com'), as: :support
   get "/contact", to: redirect('http://gravityapp.uservoice.com')
 

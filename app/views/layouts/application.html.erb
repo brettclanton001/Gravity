@@ -95,11 +95,12 @@
 
     <div class="footer">
       <nav>
-        <%= link_to 'Homepage',           homepage_path %>
-        <%= link_to 'Pricing',            pricing_path %>
-        <%= link_to 'Privacy Policy',     privacy_path %>
-        <%= link_to 'Terms & Conditions', terms_path %>
-        <%= link_to 'Support',            support_path, target: '_blank' %>
+        <%= link_to 'Homepage',             homepage_path %>
+        <%= link_to 'Pricing',              pricing_path %>
+        <%= link_to 'Privacy Policy',       privacy_path %>
+        <%= link_to 'Terms & Conditions',   terms_path %>
+        <%= link_to 'Support',              support_path, target: '_blank' %>
+        <%= link_to 'Feature Suggestions',  feature_suggestion_path, target: '_blank' %>
 
         <% if current_user %>
           <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
