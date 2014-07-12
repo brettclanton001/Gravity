@@ -3,8 +3,12 @@ class UploadedFileController < ApplicationController
 
   def show_file
     file = UploadedFile.find_with_token(params[:token])
-    file.log_file_request
-    send_file file.cached_file, filename: "#{file.token}.#{file.upload.file.extension.downcase}", type: file.type, disposition: "inline"
+    if file.nil?
+      render :error
+    else
+      file.log_file_request
+      send_file file.cached_file, filename: "#{file.token}.#{file.upload.file.extension.downcase}", type: file.type, disposition: "inline"
+    end
   end
 
   def create
