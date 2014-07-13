@@ -1,0 +1,19 @@
+%h4 All Uploaded Files
+%table#all-files-list.table-striped.table
+  %tr
+    %th Thumbnail
+    %th URL
+    %th File Name
+    %th File Size
+    %th Total Views
+    %th Created At
+  %tbody.data
+    - @files.each do |file|
+      %tr
+        %td.image= image_tag file.thumbnail
+        %td.url= link_to file.short_url, file.short_url, target: '_blank'
+        %td.name= file.name
+        %td.size= number_to_human_size file.size
+        %td.views= file.total_views
+        %td.time= file.created_at.to_formatted_s(:long_ordinal)
+.pagination= will_paginate @files

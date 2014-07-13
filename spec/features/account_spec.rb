@@ -29,7 +29,7 @@ describe "Account/Stripe functionality" do
       visit '/account/payment_history'
     end
 
-    it "should display payment history" do
+    it "should display payment history header" do
       page.should have_text 'Payment History'
     end
   end

@@ -22,6 +22,8 @@ gem 'rmagick'
 gem 'fog'
 gem 'newrelic_rpm'
 gem 'sitemap_generator'
+gem 'haml-rails'
+gem 'will_paginate'
 
 group :doc do
   gem 'sdoc', require: false

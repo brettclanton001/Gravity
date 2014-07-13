@@ -24,6 +24,10 @@ class UploadedFile < ActiveRecord::Base
     self.content_type = upload.content_type
   end
 
+  def name
+    upload.path.split("/").last
+  end
+
   def record_file_size
     self.file_size = upload.file.size if upload.present? && upload.file.present?
   end
@@ -61,6 +65,10 @@ class UploadedFile < ActiveRecord::Base
   def type
     update_attribute(:content_type, upload.content_type) unless content_type
     content_type
+  end
+
+  def total_views
+    file_requests.pluck(:requests).inject{|sum,x| sum + x } || 0
   end
 
   def log_file_request

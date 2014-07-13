@@ -1,0 +1,13 @@
+%h1 Payment History
+%p Your most recent payments will be listed below.
+%table#payment-history-list.table.table-striped
+  %tr
+    %th Status
+    %th Amount
+    %th Card
+    %th Billing Date
+  %tr.loading-payment-history
+    %td{ colspan:"4"}
+      %i.icon-spinner.icon-spin.icon-large
+
+

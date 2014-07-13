@@ -1,0 +1,19 @@
+
+.row
+  .span6.relative
+    %h4 Upload More Files
+    %form{ action:'/uploaded_files', class:'dropzone', id:'upload-page-dropzone', method:'post' }
+    .upload-page-spiral
+      %circles
+
+  .span6
+    .view-all-files= link_to 'View All Files', all_files_path
+    %h4 Your Uploads
+    %table#uploads-page-file-list.table-striped.table
+      %tbody.data
+        - @files.each do |file|
+          %tr
+            %td.image= link_to image_tag(file.thumbnail), file.short_url, target: '_blank'
+            %td.url= link_to file.short_url, file.short_url, target: '_blank'
+            %td.time{ 'data-time' => file.created_at.as_json }= time_ago file
+    .view-all-files= link_to 'View All Files', all_files_path

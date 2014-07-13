@@ -42,5 +42,6 @@ Gravity::Application.routes.draw do
   # Main App Page
   get '/uploads' => "account#uploads", as: :user_root # for devise
   get '/uploads' => "account#uploads", as: :uploads
+  get '/all_files' => "account#all_files", as: :all_files
 
 end

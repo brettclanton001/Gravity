@@ -7,6 +7,7 @@ class AccountController < ApplicationController
     if !current_user.active_payments && current_user.discount_percent < 100
       redirect_to account_payment_methods_path, alert: 'You must have an active payment method on file to use this application.'
     end
+    @files = current_user.uploaded_files.order('created_at DESC').first(20)
   end
 
   def payment_methods
@@ -23,7 +24,8 @@ class AccountController < ApplicationController
     end
   end
 
-  def settings
+  def all_files
+    @files = current_user.uploaded_files.order('created_at DESC').paginate(:page => params[:page], :per_page => 100)
   end
 
   def add_user_card

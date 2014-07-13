@@ -1,0 +1,27 @@
+%h1 Payment Methods
+%p All of your current payment methods will be listed below.
+%table#payment-method-list.table.table-striped
+  %tr
+    %th Credit Card Number
+    %th Type
+    %th Expiration
+  %tr.loading-payment-methods
+    %td{ colspan:"3" }
+      %i.icon-spinner.icon-spin.icon-large
+
+
+%h3 Create New Payment Method
+= form_tag do
+  #add-payment-method-form
+    .input-row
+      %label{ for:"card-number" } Card Number:
+      %input{ type:"text", placeholder:"1111222233334444", id:"card-number" }
+    .input-row.expiration
+      %label Expiration
+      %input#card-expiry-month{ maxlength:"2", type:"text", placeholder:"Month" }
+      %input#card-expiry-year{ maxlength:"4", type:"text", placeholder:"Year" }
+    .input-row
+      %label{ for:"card-cvc" } CVC Number:
+      %input#card-cvc{ type:"text", placeholder:"123" }
+    .input-row
+      %input.submit{ type:"submit", value:"Create Payment Method" }

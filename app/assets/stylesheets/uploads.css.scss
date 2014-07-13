@@ -28,6 +28,23 @@
   }
 }
 
+#all-files-list {
+
+  td.image {
+   text-align: center;
+     img {
+      width: auto;
+      height: auto;
+      max-height: 60px;
+    }
+  }
+}
+
+.view-all-files a {
+  float: right;
+  line-height: 40px;
+}
+
 // Spiral Background
 .upload-page-spiral {
   position: absolute;
