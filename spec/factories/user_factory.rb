@@ -5,6 +5,7 @@ FactoryGirl.define do
     password_confirmation 'password123'
     active true
     active_payments true
+    confirmation_sent_at Time.now - 12.minutes
 
     factory :confirmed_user do
       confirmed_at Time.now - 10.minutes
