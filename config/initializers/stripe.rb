@@ -2,11 +2,9 @@ require "stripe"
 
 MINIMUM_VALID_CHARGE = 100
 
-if Rails.env == 'production'
-  Stripe.api_key = "UYLCpHFvWkGa0XBeQv07VDtBLwZkXYVR"
-  STRIPE_PUBLIC_KEY = 'pk_NGeEB7xYy2V140P5EoQwyTepXxD13'
-else
-  Stripe.api_key = "b4YfuL6avBxL2RgjuMmLERZ3UFUjR6Lf"
-  STRIPE_PUBLIC_KEY = 'pk_tgys8iz6XIxxn8v3gkggQAhzgNvoS'
-end
+Stripe.api_key = ENV['STRIPE_API_KEY']
+STRIPE_PUBLIC_KEY = ENV['STRIPE_PUBLIC_KEY']
 
+# Add config to ~/.bashrc or ~/.bash_profile for OSX
+# export STRIPE_API_KEY='123'
+# export STRIPE_PUBLIC_KEY='abc'

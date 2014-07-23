@@ -5,7 +5,7 @@ require 'rspec/rails'
 require 'rspec/autorun'
 
 require 'stripe'
-Stripe.api_key = "b4YfuL6avBxL2RgjuMmLERZ3UFUjR6Lf"
+Stripe.api_key = ENV['STRIPE_API_KEY']
 
 require 'capybara/rspec'
 # Capybara.javascript_driver = :webkit
