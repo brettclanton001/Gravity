@@ -20,9 +20,14 @@ describe "Primary use of the app : " do
       visit uploads_path
 
       page.should have_css('#uploads-page-file-list .data tr', count: 0)
+      find(:css, '.view-all-files a', visible: false).visible?.should be_false
+      find(:css, '.first-time-instructions').visible?.should be_true
 
       page.execute_script "window.dz_new_file(#{file_hash})"
       page.should have_css('#uploads-page-file-list .data tr', count: 1)
+
+      find(:css, '.view-all-files a').visible?.should be_true
+      find(:css, '.first-time-instructions', visible: false).visible?.should be_false
 
       page.execute_script "window.dz_new_file(#{file_hash})"
       page.should have_css('#uploads-page-file-list .data tr', count: 2)

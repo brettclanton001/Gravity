@@ -5,6 +5,8 @@ $ ->
   if is_upload_page
 
     window.dz_new_file = (file)->
+      $('.first-time-instructions').hide()
+      $('.view-all-files a').removeClass 'hide'
       link = "<a href=\"#{file.url}\" target=\"_blank\">"
       text_link = "#{link}#{file.url}</a>"
       image_link = "#{link}<img src=\"#{file.thumbnail}\" /></a>"

@@ -7,7 +7,7 @@
       %circles
 
   .span6
-    .view-all-files= link_to 'View All Files', all_files_path
+    .view-all-files= link_to 'View All Files', all_files_path, class: "#{'hide' if @files.empty?}"
     %h4 Your Uploads
     %table#uploads-page-file-list.table-striped.table
       %tbody.data
@@ -16,4 +16,8 @@
             %td.image= link_to image_tag(file.thumbnail), file.short_url, target: '_blank'
             %td.url= link_to file.short_url, file.short_url, target: '_blank'
             %td.time{ 'data-time' => file.created_at.as_json }= time_ago file
-    .view-all-files= link_to 'View All Files', all_files_path
+        - if @files.empty?
+          .first-time-instructions.well
+            %h2 First Time?
+            %p Drag a file to the spiral on the left, or just click it and choose a file.
+    .view-all-files= link_to 'View All Files', all_files_path unless @files.size < 5
