@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.4'
 ruby '2.1.2'
 
@@ -24,6 +23,7 @@ gem 'newrelic_rpm'
 gem 'sitemap_generator'
 gem 'haml-rails'
 gem 'will_paginate'
+gem 'unicorn'
 
 group :doc do
   gem 'sdoc', require: false
@@ -39,15 +39,3 @@ group :development, :test do
   gem 'database_cleaner'
 end
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
-#
