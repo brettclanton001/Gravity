@@ -24,6 +24,7 @@ gem 'sitemap_generator'
 gem 'haml-rails'
 gem 'will_paginate'
 gem 'unicorn'
+gem 'rails_12factor', group: :production
 
 group :doc do
   gem 'sdoc', require: false
