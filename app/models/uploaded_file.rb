@@ -14,7 +14,7 @@ class UploadedFile < ActiveRecord::Base
 
   def thumbnail
     if type.start_with? 'image'
-      upload_url(:thumb)
+      "/t/#{token}"
     else
       '/assets/file_icon.png'
     end
@@ -54,8 +54,23 @@ class UploadedFile < ActiveRecord::Base
     tmp_file
   end
 
+  def cached_thumbnail
+    tmp_file = nil
+    begin
+      tmp_file = open(Rails.cache.read([:thumbnail_path, id]))
+    rescue
+      tmp_file = uploaded_thumbnail
+      Rails.cache.write([:thumbnail_path, id], tmp_file.to_path)
+    end
+    tmp_file
+  end
+
   def uploaded_file
     open(upload_url, "rb")
+  end
+
+  def uploaded_thumbnail
+    open(upload_url(:thumb), "rb")
   end
 
   def short_url

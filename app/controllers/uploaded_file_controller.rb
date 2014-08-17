@@ -11,6 +11,15 @@ class UploadedFileController < ApplicationController
     end
   end
 
+  def show_thumbnail
+    file = UploadedFile.find_with_token(params[:token])
+    if file.nil?
+      render :error
+    else
+      send_file file.cached_thumbnail, filename: "#{file.token}_thumb.#{file.upload.file.extension.downcase}", type: file.type, disposition: "inline"
+    end
+  end
+
   def create
     file = UploadedFile.new(uploaded_file_params)
     loop do
