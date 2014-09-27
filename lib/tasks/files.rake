@@ -6,4 +6,9 @@ namespace :files do
     UploadedFile.clean_up_unregistered_files
   end
 
+  desc "Update file requests to mark if they are billable"
+  task update_billable: :environment do
+    User.update_file_requests_billable
+  end
+
 end

@@ -2,7 +2,7 @@ class UploadedFile < ActiveRecord::Base
 
   IMAGE_EXTENSIONS = ['jpg', 'jpeg', 'gif', 'png']
 
-  belongs_to :users
+  belongs_to :user
   has_many :file_requests
 
   mount_uploader :upload, FileUploader

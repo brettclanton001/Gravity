@@ -6,5 +6,6 @@ FactoryGirl.define do
     requests 1
     start_date "2014-05-04"
     end_date "2014-05-04"
+    billable true
   end
 end

@@ -6,10 +6,14 @@ class User < ActiveRecord::Base
          :confirmable
 
   has_many :uploaded_files
+  has_many :file_requests, through: :uploaded_files
   has_many :user_charges
 
   before_create :create_stripe_customer
   after_save :update_stripe_customer
+
+  TRIAL_STORAGE = CostCalculator::BYTES_IN_GB
+  TRIAL_TRANSFER = CostCalculator::BYTES_IN_GB * 10
 
   def create_stripe_customer
     self.stripe_customer_token = Stripe::Customer.create({email: email})["id"]
@@ -40,7 +44,27 @@ class User < ActiveRecord::Base
     Stripe::Charge.all(customer: stripe_customer_token)
   end
 
+  def has_app_access?
+    ( discount_percent == 100 || is_in_trial_period? || active_payments )
+  end
+
+  def is_in_trial_period?
+    ( historical_byte_usage < TRIAL_TRANSFER && historical_storage_usage < TRIAL_STORAGE )
+  end
+
+  def self.update_file_requests_billable
+    update_users = FileRequest.where( billable: nil ).map {|fr| fr.user}.uniq.compact
+    update_users.each {|u| u.update_file_requests_billable }
+  end
+
+  def update_file_requests_billable
+    billable_value = !is_in_trial_period?
+    file_requests.where( billable: nil ).update_all( billable: billable_value )
+  end
+
   def self.charge_users
+    update_file_requests_billable # update billable flags
+
     find_charge_worthy_users.each do |user|
       period = user.unpaid_request_payable_period
       user.new_charge user.current_final_charge(true), period[:start], period[:end]
@@ -49,7 +73,7 @@ class User < ActiveRecord::Base
 
   def self.find_charge_worthy_users
     file_ids = FileRequest
-      .where(["end_date < ? AND user_charge_id IS NULL", Date.today.at_beginning_of_month])
+      .where(["end_date < ? AND user_charge_id IS NULL AND billable", Date.today.at_beginning_of_month])
       .pluck(:uploaded_file_id).uniq
     user_ids = UploadedFile.where(id: file_ids).pluck(:user_id).uniq
     #User.where(id: user_ids).map {|u| u if u.current_final_charge(true) >= MINIMUM_VALID_CHARGE }.compact
@@ -71,7 +95,7 @@ class User < ActiveRecord::Base
     charge.save
     if charge.success
       FileRequest
-        .where(["end_date < ? AND user_charge_id IS NULL", Date.today.at_beginning_of_month])
+        .where(["end_date < ? AND user_charge_id IS NULL AND billable", Date.today.at_beginning_of_month])
         .update_all(user_charge_id: charge.id)
     end
   end
@@ -79,10 +103,10 @@ class User < ActiveRecord::Base
   def unpaid_request_payable_period
     file_ids = self.uploaded_files.pluck(:id)
     start = FileRequest.select(:start_date).where([
-      "uploaded_file_id IN (?) AND end_date < ? AND user_charge_id IS NULL",
+      "uploaded_file_id IN (?) AND end_date < ? AND user_charge_id IS NULL AND billable",
       file_ids,
       Date.today.at_beginning_of_month
-    ]).order("start_date ASC").first.start_date
+    ]).order("start_date ASC").first.start_date rescue (Date.today - 1.month).at_beginning_of_month
     { start: start, end: (Date.today - 1.month).at_end_of_month }
   end
 
@@ -90,13 +114,13 @@ class User < ActiveRecord::Base
     file_ids = self.uploaded_files.pluck(:id)
     if payable
       FileRequest.where([
-        "uploaded_file_id IN (?) AND end_date < ? AND user_charge_id IS NULL",
+        "uploaded_file_id IN (?) AND end_date < ? AND user_charge_id IS NULL AND billable",
         file_ids,
         Date.today.at_beginning_of_month
       ])
     else
       FileRequest.where([
-        "uploaded_file_id IN (?) AND user_charge_id IS NULL",
+        "uploaded_file_id IN (?) AND user_charge_id IS NULL AND billable",
         file_ids
       ])
     end
@@ -131,6 +155,21 @@ class User < ActiveRecord::Base
       byte_usage += requests * size
     end
     byte_usage
+  end
+
+  def historical_byte_usage only_payable = false
+    byte_usage = 0
+    file_requests.each do |r|
+      # I'm adding 1 to the requests count to account for the original upload
+      requests = r.requests + 1
+      size = r.uploaded_file.size || 0
+      byte_usage += requests * size
+    end
+    byte_usage
+  end
+
+  def historical_storage_usage
+    uploaded_files.sum(:file_size)
   end
 
 end

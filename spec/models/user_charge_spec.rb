@@ -47,6 +47,22 @@ describe UserCharge do
       start_date: Date.today.at_beginning_of_month,
       end_date: Date.today.at_end_of_month
     )
+    FactoryGirl.create( # not old enough to charge, the month isn't over yet
+      :file_request,
+      uploaded_file_id: f3.id,
+      requests: 80000,
+      start_date: Date.today.at_beginning_of_month,
+      end_date: Date.today.at_end_of_month,
+      billable: false
+    )
+    FactoryGirl.create( # not old enough to charge, the month isn't over yet
+      :file_request,
+      uploaded_file_id: f3.id,
+      requests: 80000,
+      start_date: Date.today.at_beginning_of_month,
+      end_date: Date.today.at_end_of_month,
+      billable: nil
+    )
     # important data
     @user = FactoryGirl.create(:user)
     @file = FactoryGirl.create(:uploaded_file, token: 'f4', user_id: @user.id, file_size: 12345623)
