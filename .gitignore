@@ -6,6 +6,8 @@
 
 /config/initializers/local_emails.rb
 /config/initializers/aws.rb
+/config/initializers/domain_settings.rb
+/config/database.yml
 
 # Ignore bundler config.
 /.bundle

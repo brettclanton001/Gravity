@@ -11,10 +11,9 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.turbolinks
 //= require jquery_ujs
+//= require bootstrap-dropdown
 //= require timeago
-//= require twitter/bootstrap
 //= require public
 //= require account
 //= require sacred_geometry
