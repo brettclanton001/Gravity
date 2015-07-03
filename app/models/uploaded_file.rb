@@ -59,7 +59,7 @@ class UploadedFile < ActiveRecord::Base
   end
 
   def short_url
-    "http://#{SHORT_DOMAIN}/i/#{token}"
+    "http://#{Settings.domain.short}/i/#{token}"
   end
 
   def type

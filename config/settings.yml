@@ -1,0 +1,4 @@
+
+domain:
+  base: <%= ENV['DOMAIN'] %>
+  short: <%= ENV['SHORT_DOMAIN'] %>
