@@ -95,6 +95,9 @@ GEM
       activesupport (>= 4.0.1)
       haml (>= 3.1, < 5.0)
       railties (>= 4.0.1)
+    heroku-api (0.3.18)
+      excon (~> 0.27)
+      multi_json (~> 1.8)
     hike (1.2.3)
     i18n (0.6.11)
     jbuilder (1.5.3)
@@ -236,6 +239,7 @@ DEPENDENCIES
   factory_girl_rails
   fog
   haml-rails
+  heroku-api
   jbuilder (~> 1.2)
   jquery-rails
   newrelic_rpm

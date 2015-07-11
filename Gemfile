@@ -23,6 +23,7 @@ gem 'will_paginate'
 gem 'unicorn'
 gem 'rails_12factor', group: :production
 gem 'rails_config'
+gem 'heroku-api'
 
 group :doc do
   gem 'sdoc', require: false
