@@ -19,6 +19,7 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+/public/uploads
 
 config/settings.local.yml
 config/settings/*.local.yml
